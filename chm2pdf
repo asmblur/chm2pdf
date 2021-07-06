@@ -148,7 +148,7 @@ def correct_file(input_file, output_file, html_list, objective_urls, options):
 
     # Correct the HTML markup of the page, if the --beautifulsoup was passed.
     if options['beautifulsoup']=='--beautifulsoup':
-        from BeautifulSoup import BeautifulSoup, Tag
+        from bs4 import BeautifulSoup, Tag
         soup = BeautifulSoup(page)
         page = str(soup)
 
@@ -611,7 +611,7 @@ def convert_to_pdf(cfile, filename, outputfilename, options):
 
     if options['verbose']=='--verbose' and options['verbositylevel']=='high':
         print('htmldoc' + htmldoc_opts + ' ' + htmlout_filename_list + " -f "+ outputfilename + " > /dev/null")
-    exit_value=os.system ('htmldoc' + htmldoc_opts + ' ' + htmlout_filename_list + " -f \""+ outputfilename + "\" > /dev/null")
+    exit_value=os.system ('htmldoc' + htmldoc_opts + ' ' + htmlout_filename_list + " -f \""+ outputfilename.replace('"', '\\"') + "\" > /dev/null")
     if exit_value != 0:
         print('Something wrong happened when launching htmldoc.')
         print('exit value: ',exit_value)
@@ -1107,8 +1107,8 @@ def main(argv):
     if options['dontextract'] == '':
         if options['verbose']=='--verbose' and options['verbositylevel']=='high':
             print('Removing any previous temporary files...')
-        os.system('rm -r "'+CHM2PDF_ORIG_DIR+'"')
-        os.system('rm -r "'+CHM2PDF_WORK_DIR+'"')
+        os.system('rm -r "'+CHM2PDF_ORIG_DIR.replace('"', '\\"')+'"')
+        os.system('rm -r "'+CHM2PDF_WORK_DIR.replace('"', '\\"')+'"')
 
     cfile = chm.CHMFile()
     cfile.LoadCHM(filename)
