@@ -525,7 +525,7 @@ def convert_to_pdf(cfile, filename, outputfilename, options):
             if   key=='bodycolor': htmldoc_opts += ' --bodycolor ' + value
             elif key=='bodyfont': htmldoc_opts += ' --bodyfont ' + value
             elif key=='bodyimage': htmldoc_opts += ' --bodyimage ' + value
-            elif key=='book': htmldoc_opts += ' ' + value
+            elif key=='book':htmldoc_opts += ' ' + value + ' --webpage'
             elif key=='bottom': htmldoc_opts += ' --bottom ' + value
             elif key=='browserwidth': htmldoc_opts += ' --browserwidth ' + value
             elif key=='charset': htmldoc_opts += ' --charset ' + value
@@ -1107,8 +1107,8 @@ def main(argv):
     if options['dontextract'] == '':
         if options['verbose']=='--verbose' and options['verbositylevel']=='high':
             print('Removing any previous temporary files...')
-        os.system('rm -r "'+CHM2PDF_ORIG_DIR+'"*')
-        os.system('rm -r "'+CHM2PDF_WORK_DIR+'"*')
+        os.system('rm -r "'+CHM2PDF_ORIG_DIR+'"')
+        os.system('rm -r "'+CHM2PDF_WORK_DIR+'"')
 
     cfile = chm.CHMFile()
     cfile.LoadCHM(filename)
