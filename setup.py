@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name = "chm2pdf",
-    version = "0.9",
+    version = "0.9.3",
     description = "A script to convert CHM files into PDF",
     author = "Massimo Sandal, Chris Karakas, Suleyman Poyraz",
     author_email = "devicerandom@gmail.com, chris@karakas-online.de",
